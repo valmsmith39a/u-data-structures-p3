@@ -13,7 +13,7 @@ def sqrt(number):
 
     while start_index <= end_index:
 
-        mid_index = end_index - start_index // 2
+        mid_index = (end_index + start_index) // 2
 
         square = mid_index * mid_index
 
