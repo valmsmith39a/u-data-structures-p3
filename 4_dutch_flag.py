@@ -9,8 +9,9 @@ def sort_012(input_list):
     next_pos_2 = len(input_list) - 1
 
     front_index = 0
-
+    index = 0
     while front_index <= next_pos_2:
+        index += 1
         if input_list[front_index] == 0:
             input_list[front_index] = input_list[next_pos_0]
             input_list[next_pos_0] = 0
@@ -28,7 +29,6 @@ def sort_012(input_list):
 
 def test_function(test_case):
     sorted_array = sort_012(test_case)
-    print(sorted_array)
     if sorted_array == sorted(test_case):
         print("Pass")
     else:

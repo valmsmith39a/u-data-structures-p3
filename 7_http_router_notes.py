@@ -29,7 +29,7 @@ don't need endOfWord property
 
 
 class RouteTrieNode:
-    def __init__(self, handler):
+    def __init__(self, handler=""):
         # Initialize the node with children as before, plus a handler
         self.children = {}
         self.handler = handler
@@ -48,10 +48,9 @@ class RouteTrie:
         # Similar to our previous example you will want to recursively add nodes
         # Make sure you assign the handler to only the leaf (deepest) node of this path
         current_node = self.root
-
         for part in path:
             if part not in current_node.children:
-                current_node.children[part] = RouteTrieNode(handler)
+                current_node.children[part] = RouteTrieNode()
             current_node = current_node.children[part]
 
         # Only assign handler to the leaf (deepest) node of this path
@@ -94,14 +93,19 @@ class Router:
         # e.g. /about and /about/ both return the /about handler
         path_parts = self.split_path(path)
         path_node = self.routes.find(path_parts)
-        return path_node.handler if path_node else None
+        return path_node.handler if path_node and path_node.handler else "no handler found"
 
     def split_path(self, path):
         # you need to split the path into parts for
         # both the add_handler and lookup functions,
         # so it should be placed in a function here
-        return path.split("/")
 
+        if path == '/' or path == '':
+            return []
+
+        # Ex ['home', 'about']
+        # Note that "/" is the root node with handler ex "root handler"
+        return path.split("/")[1:]
 
 ####################################
 
@@ -153,10 +157,19 @@ class Router:
 # remove the 'not found handler' if you did not implement this
 router = Router("root handler", "not found handler")
 router.add_handler("/home/about", "about handler")  # add a route
+# print(router.routes.root.children['home'].children['about'].handler)
+# about handler
+
+# print(router.routes.root.handler)
 
 # some lookups with the expected output
-print(router.lookup("/"))  # should print 'root handler'
-# print(router.lookup("/home")) # should print 'not found handler' or None if you did not implement one
-# print(router.lookup("/home/about")) # should print 'about handler'
-# print(router.lookup("/home/about/")) # should print 'about handler' or None if you did not handle trailing slashes
-# print(router.lookup("/home/about/me")) # should print 'not found handler' or None if you did not implement one
+print(router.lookup(""))
+# should print 'root handler'
+print(router.lookup("/home"))
+# should print 'not found handler' or None if you did not implement one
+print(router.lookup("/home/about"))
+# should print 'about handler'
+print(router.lookup("/home/about/"))
+# should print 'about handler' or None if you did not handle trailing slashes
+# should print 'not found handler' or None if you did not implement one
+print(router.lookup("/home/about/me"))

@@ -7,8 +7,9 @@ def rearrange_digits(input_list):
     Returns:
        (int),(int): Two maximum sums
     """
-    # sort list and arrange in descending order
+
     quicksort(input_list)
+
     mid_index = len(input_list) // 2
     sublist_1 = [None for x in range(mid_index)]
     sublist_2 = [None for x in range(len(input_list) - mid_index)]
