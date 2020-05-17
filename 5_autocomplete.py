@@ -1,6 +1,6 @@
 """
 
-autocomplete
+autocomplete - notes/drafts 
 
 basic_trie = {
     'a': {
@@ -52,8 +52,7 @@ class TrieNode:
             suffix_list.append(suffix)
 
         for char, child in self.children.items():
-            new_suffix = suffix + char
-            suffix_list.extend(child.suffixes(new_suffix))
+            suffix_list.extend(child.suffixes(suffix + char))
 
         return suffix_list
 
@@ -82,10 +81,10 @@ class Trie:
 
         for char in prefix:
             if char not in current_node.children:
-                return False
+                return None
             current_node = current_node.children[char]
 
-        return current_node.is_word
+        return current_node
 
 
 # Test TrieNode
@@ -121,4 +120,43 @@ trie.insert('factory')
 # {'u': <__main__.TrieNode object at 0x101220690>, 'a': <__main__.TrieNode object at 0x101220850>}
 
 # for f node, expect to return "un", "unction", "actory"
-print(trie.root.children['f'].suffixes())
+trie.root.children['f'].suffixes()
+# print(trie.find('f').is_word)
+
+MyTrie = Trie()
+wordList = [
+    "ant", "anthology", "antagonist", "antonym",
+    "fun", "function", "factory",
+    "trie", "trigger", "trigonometry", "tripod"
+]
+for word in wordList:
+    MyTrie.insert(word)
+
+
+def f(prefix):
+    if prefix != '':
+        prefixNode = MyTrie.find(prefix)
+        if prefixNode:
+            print('\n'.join(prefixNode.suffixes()))
+        else:
+            print(prefix + " not found")
+    else:
+        print('')
+
+
+f('f')
+"""
+Expected:
+un
+unction
+actory
+"""
+
+f('a')
+"""
+Expected
+nt
+nthology
+ntagonist
+ntonym
+"""
