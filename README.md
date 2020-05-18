@@ -1,1 +1,4 @@
-# u-data-structures-p3
+# Udacity Data Structures and Algorithms
+
+## Project 3: Problems vs Algorithms
+

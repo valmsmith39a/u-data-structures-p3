@@ -12,6 +12,6 @@ Then we can run binary search on the sub-array up to the pivot, and again on the
 
 We run the binary search algorithm 3 times for a run-time of 3 * O(log n) => O(log n)
 
-### Space complexity
+### Space Complexity
 
 We don't create any new data structures other than the given input list, so our program runs in O(1) space. 
