@@ -11,6 +11,9 @@ def sqrt(number):
     end_index = number
     mid_index = 0
 
+    if number < 0:
+        return "Error: Negative Number"
+
     while start_index <= end_index:
 
         mid_index = (end_index + start_index) // 2
@@ -39,7 +42,8 @@ print("Pass" if (0 == sqrt(0)) else "Fail")
 print("Pass" if (4 == sqrt(16)) else "Fail")
 print("Pass" if (1 == sqrt(1)) else "Fail")
 print("Pass" if (5 == sqrt(27)) else "Fail")
-
+print("Pass" if (35 == sqrt(1225)) else "Fail")
+print("Pass" if ("Error: Negative Number" == sqrt(-25)) else "Fail")
 
 """
     naive solution, run-time is: O(n)
@@ -71,3 +75,5 @@ print("Pass" if (0 == square_root_naive(0)) else "Fail")
 print("Pass" if (4 == square_root_naive(16)) else "Fail")
 print("Pass" if (1 == square_root_naive(1)) else "Fail")
 print("Pass" if (5 == square_root_naive(27)) else "Fail")
+print("Pass" if (35 == sqrt(1225)) else "Fail")
+print("Pass" if ("Error: Negative Number" == sqrt(-25)) else "Fail")
