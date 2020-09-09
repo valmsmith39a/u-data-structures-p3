@@ -8,6 +8,12 @@ def rotated_array_search(input_list, number):
        int: Index or -1
     """
 
+    if not input_list:
+        return -1
+
+    if len(input_list) == 1:
+        return 0 if input_list[0] == number else -1
+
     pivot = find_pivot(input_list)
 
     # if target is greater than or equal to first element of input list, target must be left of the pivot
@@ -70,6 +76,8 @@ def test_function(test_case):
         print("Fail")
 
 
+test_function([[], 6])
+test_function([[2], 2])
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
 test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
 test_function([[6, 7, 8, 1, 2, 3, 4], 8])
