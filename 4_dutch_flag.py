@@ -5,6 +5,10 @@ def sort_012(input_list):
     Args:
        input_list(list): List to be sorted
     """
+
+    if not input_list:
+        return input_list
+
     next_pos_0 = 0
     next_pos_2 = len(input_list) - 1
 
@@ -39,3 +43,5 @@ test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2,
                2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+test_function([])
+test_function([1])

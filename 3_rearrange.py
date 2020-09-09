@@ -8,6 +8,12 @@ def rearrange_digits(input_list):
        (int),(int): Two maximum sums
     """
 
+    if not input_list:
+        return [0, 0]
+
+    if len(input_list) == 1:
+        return [input_list[0], 0]
+
     quicksort(input_list)
 
     mid_index = len(input_list) // 2
@@ -85,6 +91,14 @@ def test_function(test_case):
         print("Fail")
 
 
-test_function([[1, 2, 3, 4, 5], [542, 31]])
-test_case = [[4, 6, 2, 5, 9, 8], [964, 852]]
-test_function(test_case)
+test_case_1 = [[1, 2, 3, 4, 5], [542, 31]]
+test_case_2 = [[4, 6, 2, 5, 9, 8], [964, 852]]
+test_case_3 = [[], [0, 0]]
+test_case_4 = [[2], [2, 0]]
+test_case_5 = [[1, 2], [2, 1]]
+
+test_function(test_case_1)
+test_function(test_case_2)
+test_function(test_case_3)
+test_function(test_case_4)
+test_function(test_case_5)
