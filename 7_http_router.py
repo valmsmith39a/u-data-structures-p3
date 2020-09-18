@@ -88,10 +88,27 @@ router.add_handler("/home/about", "about handler")  # add a route
 print(router.lookup(""))
 # should print 'root handler'
 print(router.lookup("/home"))
-# should print 'not found handler' or None if you did not implement one
+# should print 'not found handler' or no handler found if you did not implement one
 print(router.lookup("/home/about"))
 # should print 'about handler'
 print(router.lookup("/home/about/"))
-# should print 'about handler' or 'not found handler' if you did not handle trailing slashes
+# should print 'about handler' or 'no handler found' if you did not handle trailing slashes
 print(router.lookup("/home/about/me"))
-# should print 'not found handler' or None if you did not implement one
+# should print 'no handler found' or None if you did not implement one
+
+router.add_handler("/home/contact", "contact handler")
+router.add_handler("/home/projects", "projects handler")
+router.add_handler("/home/projects/ai", "ai handler")
+router.add_handler("/home/projects/quantum", "quantum handler")
+router.add_handler("/home/projects/genomics", "genomics handler")
+
+print(router.lookup("/home/contact"))
+# should print 'contact handler'
+print(router.lookup("/home/projects"))
+# should print 'projects handler'
+print(router.lookup("/home/projects/ai"))
+# should print 'ai handler'
+print(router.lookup("/home/projects/quantum"))
+# should print 'quantum handler'
+print(router.lookup("/home/projects/genomics"))
+# should print 'genomics handler'
